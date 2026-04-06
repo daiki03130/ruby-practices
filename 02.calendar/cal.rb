@@ -6,12 +6,12 @@ month = Date.today.month
 year = Date.today.year
 
 OptionParser.new do |opt|
-  opt.on("-m MONTH", "--month MONTH", "受け取った月") do |m|
-    month = m.to_i
+  opt.on("-m MONTH", "--month MONTH", Integer, "受け取った月") do |m|
+    month = m
   end
 
-  opt.on("-y YEAR", "--year YEAR", "年を指定") do |y|
-    year = y.to_i
+  opt.on("-y YEAR", "--year YEAR", Integer, "年を指定") do |y|
+    year = y
   end
 end.parse!
 
@@ -44,3 +44,5 @@ end
     print "\n"
   end
 end
+
+puts
