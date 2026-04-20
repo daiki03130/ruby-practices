@@ -18,31 +18,19 @@ end.parse!
 abort "1〜12の月を指定してください" unless (1..12).include?(month)
 abort "1970〜2100の年を指定してください" unless (1970..2100).include?(year)
 
-first_day = Date.new(year, month, 1)
-first_wday = first_day.wday
+first_date = Date.new(year, month, 1)
+last_date = Date.new(year, month, -1)
 
-last_day = Date.new(year, month, -1)
-days_in_month = last_day.mday
-
-title = "#{month}月 #{year}".center(20)
+title = "#{month}月 #{year}"
 week_header = "日 月 火 水 木 金 土 "
 puts title.center(week_header.length)
 puts week_header
 
-first_wday.times do
-  print "   "
-end
+print "   " * first_date.wday
 
-(1..days_in_month).each do |n|
-  if n < 10
-    print " #{n} "
-  else
-    print "#{n} "
-  end
-
-  if (first_wday + n) % 7 == 0
-    print "\n"
-  end
+(first_date..last_date).each do |date|
+  print "#{date.day.to_s.rjust(2)} "
+  print "\n" if date.saturday?
 end
 
 puts
